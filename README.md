@@ -19,6 +19,9 @@ Run `'npm run e2e-tests' to execute the scenarios on Chrome.
 A smoketest tag is added right now, it can be changed to a desired one in the wdio.conf file in line 75,
 *tagExpression: '@smoketest'*
 
+## Pages and cucumber files
+More pages can be added as the project evolves, only 2 pages were added in order to project the use of page object model with cucumber as part of the delivery of the project.
+
 ## validation of additional registration numbers
 
 In order to validate more data, enter the car reg number in the feature file's data table and also update the car-input and car-output json files accordingly.
