@@ -2,7 +2,7 @@ class WeBuyAnyCarPage {
 
     get enterReg() { return $('//input[@id="vehicleReg"]') }
     get goBtn() { return $('//form[@id="vehicleReg-form"]//div//button') }
-    get mileage() { return $('[id="Mileage"]') }
+    get mileage() { return $('//div//input[@id="Mileage"]') }
     get valueMyCar() { return $('//span[text()="Value my car "]') }
     get yourName() { return $('#CustomerName') }
     get emailAddress() { return $('//input[@id="EmailAddress"]') }
@@ -15,12 +15,11 @@ class WeBuyAnyCarPage {
     get card() { return $('//div//span[text()="0"]') }
     get btn() { return $('//div//span[text()="Full"]') }
     get contBtn() { return $('//button[@id="advance-btn"]') }
-    get make() { return $('//*[@id="wbac-app-container"]/div/div/valuation/section[2]/div/div[1]/div[1]/div[4]/vehicle-details/div[3]/div[2]/div[1]/div[2]') }
-    get model() { return $('//*[@id="wbac-app-container"]/div/div/valuation/section[2]/div/div[1]/div[1]/div[4]/vehicle-details/div[3]/div[2]/div[2]/div[2]') }
+    get make() { return $(this.getxpathstr() + '/div[1]/div[2]') }
+    get model() { return $(this.getxpathstr() + '/div[2]/div[2]') }
+    get color() { return $(this.getxpathstr() + '/div[4]/div[2]') }
+    get year() { return $(this.getxpathstr() + '/div[3]/div[2]') }
 
-    get color() { return $('//*[@id="wbac-app-container"]/div/div/valuation/section[2]/div/div[1]/div[1]/div[4]/vehicle-details/div[3]/div[2]/div[4]/div[2]') }
-
-    get year() { return $('//*[@id="wbac-app-container"]/div/div/valuation/section[2]/div/div[1]/div[1]/div[4]/vehicle-details/div[3]/div[2]/div[3]/div[2]') }
 
 
     yourDetails() {
@@ -37,7 +36,6 @@ class WeBuyAnyCarPage {
         this.yourValHeader.isDisplayed()
     }
 
-
     carDetails(miles) {
         this.mileage.setValue(miles);
         this.card.click()
@@ -45,7 +43,10 @@ class WeBuyAnyCarPage {
         this.contBtn.click()
     }
 
-
+    getxpathstr() {
+        let xpathstr = '//*[@id="wbac-app-container"]/div/div/valuation/section[2]/div/div[1]/div[1]/div[4]/vehicle-details/div[3]/div[2]';
+        return xpathstr
+    }
 }
 
 module.exports = new WeBuyAnyCarPage();

@@ -1,7 +1,7 @@
 const { defineStep } = require('cucumber')
+const page = require('../pages/page.js')
 const carTaxHomePage = require('../pages/car-tax-home.page.js')
 const weBuyAnyCarPage = require('../pages/we-buy-any-car.page.js')
-
 const inputData = require("../data/car-input.json");
 let assert = require('assert');
 
@@ -13,7 +13,7 @@ defineStep('I perform a free car check', function () {
     carTaxHomePage.freeCarCheckBtn()
 })
 
-defineStep('I check valuation', function () {
+defineStep('I get a free car valuation', function () {
     carTaxHomePage.getValuation.click();
     browser.switchWindow('webuyanycar.com')
     browser.deleteCookies()
@@ -27,7 +27,6 @@ defineStep('I check valuation', function () {
 })
 
 defineStep('I enter details of {string}', function (carreg) {
-    browser.pause(3000)
     weBuyAnyCarPage.enterReg.setValue(carreg);
     const goBtn = weBuyAnyCarPage.goBtn
     let isExisting = goBtn.isExisting()
@@ -36,11 +35,12 @@ defineStep('I enter details of {string}', function (carreg) {
 
     if (isExisting) {
         goBtn.click()
-        weBuyAnyCarPage.carDetails(inputData[carreg].mileage)
+        weBuyAnyCarPage.carDetails()
         weBuyAnyCarPage.yourDetails()
         weBuyAnyCarPage.yourValuation()
     }
     else if (isVisible) {
+        page.await()
         mileage.setValue(inputData[carreg].mileage);
         weBuyAnyCarPage.valueMyCar.click();
         weBuyAnyCarPage.yourDetails()

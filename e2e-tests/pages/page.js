@@ -6,6 +6,10 @@ class Page {
     openWeBuyAnyCarUrl() {
         browser.url("https://www.webuyanycar.com/")
     }
+
+    await() {
+        browser.pause(3000)
+    }
 }
 
 module.exports = new Page()
